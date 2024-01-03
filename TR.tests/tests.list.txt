@@ -14,6 +14,11 @@
     4.2 based on class✅
 
 5. Squash characters
+    if a character is appeared multiple times concequtively, it should appear 1 time.
+    for example if there are 2 spaces and we squash space 
+    there will be no two consequitive spaces.
+    in string AAABBBCCC if we squash AB it will result into ABCCC
+    5.1 Just a space can be squashed
 6. Scale the solution 
     7.1 probably stream or yield, lets find out when reach there
 

@@ -1,7 +1,6 @@
 ﻿
 
 using FluentAssertions;
-using System.Text;
 
 namespace TR.tests
 {
@@ -71,46 +70,33 @@ namespace TR.tests
         }
 
 
-
-
-    }
-
-    internal class TRUTility(string OperateOn)
-    {
-        internal string Delete(string find)
+        [Theory]
+        [InlineData("AAABBBCCC", "AB", "ABCCC")]
+        [InlineData("Duuplicate", "u", "Duplicate")]
+        public void Squash_ShouldReplaceConsectiveOccurancesFromString(string input, string find, string expected)
         {
-            var findCharacters = RangeConverter.Convert(find);
-            StringBuilder result = new StringBuilder(OperateOn);
+            var trUtility = new TRUTility(input);
 
-            foreach (var c in findCharacters)
-            {
-                result.Replace(c.ToString(), string.Empty);
-            }
+            var squashResult = trUtility.Squash(find);
 
-            return result.ToString();
-
+            squashResult.Should().Be(expected);
         }
 
-        internal string? ReplaceRange(string find, string replace)
+        [Fact]    
+        public void Squash_ShouldReplaceConsectiveOccurancesFromStringEvenIfASingleSpaceIsGivenToSquash()
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(find);
-            ArgumentException.ThrowIfNullOrWhiteSpace(replace);
+            var trUtility = new TRUTility("Duplicate Spaces   removed");
 
-            var findCharacters = RangeConverter.Convert(find);
-            var replaceCharacters = RangeConverter.Convert(replace);
-            var inputCharacters = OperateOn.ToCharArray();
-            for (int i = 0; i < inputCharacters.Length; i++)
-            {
-                char c = inputCharacters[i];
-                int index = Array.IndexOf(findCharacters, c);
-                if (index >= 0)
-                {
-                    inputCharacters[i] = replaceCharacters[index];
-                }
-            }
-            return new string(inputCharacters);
+            var squashResult = trUtility.Squash(" ");
+
+            squashResult.Should().Be("Duplicate Spaces removed");
         }
 
-        
+
+
+
+
+
+
     }
 }

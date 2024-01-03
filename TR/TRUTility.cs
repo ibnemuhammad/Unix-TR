@@ -40,7 +40,21 @@ namespace TR.tests
 
         internal object Squash(string find)
         {
-            return "ABCCC";
+            ArgumentException.ThrowIfNullOrEmpty(find);
+            var charactersToFind = RangeConverter.Convert(find);
+            foreach (char character in charactersToFind)
+            {
+                string replacement = character.ToString();
+
+                // Replace consecutive occurrences of the character with a single occurrence
+                while (OperateOn.Contains(new string(character, 2)))
+                {
+                    OperateOn = OperateOn.Replace(new string(character, 2), replacement);
+                }
+            }
+            return OperateOn;
+
+
         }
     }
 }

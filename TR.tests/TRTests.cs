@@ -1,6 +1,7 @@
 ﻿
 
 using FluentAssertions;
+using FluentAssertions.Extensions;
 
 namespace TR.tests
 {
@@ -93,7 +94,16 @@ namespace TR.tests
         }
 
 
+        [Fact]
+        public void Replace_ShouldReplaceGiveABigString()
+        {
+            MemoryUsageTest usageTester = new();
 
+            usageTester.ExecutionTimeOf(s => s.TestMemoryUsageFor3000Iterations())
+                .Should()
+                .BeLessThanOrEqualTo(10000.Milliseconds());
+
+        }
 
 
 

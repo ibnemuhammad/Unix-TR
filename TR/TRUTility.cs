@@ -2,9 +2,9 @@
 
 namespace TR.tests
 {
-    internal class TRUTility(string OperateOn)
+    public class TRUTility(string OperateOn)
     {
-        internal string Delete(string find)
+        public string Delete(string find)
         {
             var findCharacters = RangeConverter.Convert(find);
             StringBuilder result = new StringBuilder(OperateOn);
@@ -18,7 +18,7 @@ namespace TR.tests
 
         }
 
-        internal string? ReplaceRange(string find, string replace)
+        public string? ReplaceRange(string find, string replace)
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(find);
             ArgumentException.ThrowIfNullOrWhiteSpace(replace);
@@ -38,7 +38,7 @@ namespace TR.tests
             return new string(inputCharacters);
         }
 
-        internal object Squash(string find)
+        public object Squash(string find)
         {
             ArgumentException.ThrowIfNullOrEmpty(find);
             var charactersToFind = RangeConverter.Convert(find);
@@ -56,5 +56,7 @@ namespace TR.tests
 
 
         }
+
+
     }
 }

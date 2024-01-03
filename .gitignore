@@ -3,3 +3,5 @@ TR.tests/obj
 TR/obj
 TR/bin
 .vs
+MemoryTest/bin
+MemoryTest/obj

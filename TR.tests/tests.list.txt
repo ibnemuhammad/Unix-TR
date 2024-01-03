@@ -1,0 +1,26 @@
+﻿1. translate from one character to another ✅
+2. translate range of characters (range input range output)
+    2.1  convert range to lists
+        2.1.1 ranges with hyphen [a-z] [A-Z] [0-9] ✅
+        2.1.2 ranges without any space [abc], [aeiou] ✅
+    2.2 use list of chars from ranges to replace characters ✅
+3. translate class of characters (class input class output)
+    3.1 convert range to list of characters ✅
+	            alnum        <alphanumeric characters>
+                alpha        <alphabetic characters>
+                blank        <whitespace characters>
+                cntrl        <control characters>
+                digit        <numeric characters>
+                lower        <lower-case alphabetic characters>
+                space        <space characters>
+                upper        <upper-case characters>
+    3.2 use list of chars from ranges to replace characters (i think 2.2 will eliminate this)✅
+
+4. Delete input characters
+    4.1 based on range✅
+    4.2 based on class✅
+
+5. Squash characters
+6. Scale the solution 
+    7.1 probably stream or yield, lets find out when reach there
+

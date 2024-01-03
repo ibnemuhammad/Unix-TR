@@ -63,7 +63,7 @@ namespace TR.tests
             }
 
         }
-        static char[] MatchCharacterRange(string input)
+        private static char[] MatchCharacterRange(string input)
         {
             ArgumentException.ThrowIfNullOrEmpty(input);
             return input switch

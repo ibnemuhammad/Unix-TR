@@ -5,15 +5,8 @@
         2.1.2 ranges without any space [abc], [aeiou] ✅
     2.2 use list of chars from ranges to replace characters ✅
 3. translate class of characters (class input class output)
-    3.1 convert range to list of characters ✅
-	            alnum        <alphanumeric characters>
-                alpha        <alphabetic characters>
-                blank        <whitespace characters>
-                cntrl        <control characters>
-                digit        <numeric characters>
-                lower        <lower-case alphabetic characters>
-                space        <space characters>
-                upper        <upper-case characters>
+    3.1 convert class to list of characters ✅
+	    classes: alnum alpha   digit lowe space upper
     3.2 use list of chars from ranges to replace characters (i think 2.2 will eliminate this)✅
 
 4. Delete input characters

@@ -1,75 +1,73 @@
-﻿namespace TR.tests
-{
-    internal class RangeConverter
-    {
-        
+﻿namespace TR.tests;
 
-        static internal char[] Convert(string range)
+public class RangeConverter
+{
+    public static char[] Convert(string range)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(range);
+
+        if (range.Contains("-"))
         {
-            if (!range.Contains("-"))
+            if (range.Length == 2 && range[1] == '-')
             {
-                return MatchCharacterRange(range);
+                return new char[] { range[0] };
             }
-            else { 
-                
+            else
+            {
                 char firstItem = range[0];
                 char lastItem = range[range.Length - 1];
-                if (lastItem == '-')
-                {
-                    if (range.Length == 2)
-                    {
-                        return [firstItem];
-                    }
-                    
-                }
                 return GetCharacterRange(firstItem, lastItem);
             }
-
         }
-        private static char[] MatchCharacterRange(string input)
+        else
         {
-            ArgumentException.ThrowIfNullOrEmpty(input);
-            return input switch
-            {
-                "[:digit:]" => GetCharacterRange('0', '9'),
-                "[:alnum:]" => GetCharacterRange('a', 'z')
-                                  .Union(GetCharacterRange('A', 'Z'))
-                                  .Union(GetCharacterRange('0', '9')).ToArray(),
-                "[:space:]" => new char[]{' ', '\t', '\n', '\r', '\f', '\v'}, 
-                "[:punct:]" => GetPunctuationCharacters(), // Matches punctuation characters
-                "[:lower:]" => GetCharacterRange('a', 'z'), // Matches lowercase letters
-                "[:upper:]" => GetCharacterRange('A', 'Z'), // Matches uppercase letters
-                _ => input.ToCharArray()
-            };
+            return MatchCharacterRange(range);
         }
+    }
 
-        private static char[] GetMultipleCharacterRange(char v1, char v2, char v3, char v4, char v5, char v6)
+    private static char[] MatchCharacterRange(string input)
+    {
+        switch (input)
         {
-            throw new NotImplementedException();
+            case "[:digit:]":
+                return GetCharacterRange('0', '9');
+            case "[:alnum:]":
+                return GetCharacterRange('a', 'z')
+                    .Union(GetCharacterRange('A', 'Z'))
+                    .Union(GetCharacterRange('0', '9')).ToArray();
+            case "[:space:]":
+                return new char[] { ' ', '\t', '\n', '\r', '\f', '\v' };
+            case "[:punct:]":
+                return GetPunctuationCharacters();
+            case "[:lower:]":
+                return GetCharacterRange('a', 'z');
+            case "[:upper:]":
+                return GetCharacterRange('A', 'Z');
+            default:
+                return input.ToCharArray();
         }
+    }
 
-        private static char[] GetPunctuationCharacters()
+    private static char[] GetPunctuationCharacters()
+    {
+        return ['!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+    }
+
+    private static char[] GetCharacterRange(char start, char end)
+    {
+        if (start > end)
         {
-            return new char[] { '!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~' };
+            throw new ArgumentException("Range start should be smaller than range end");
         }
 
-        private static char[] GetCharacterRange(char start, char end)
+        int rangeLength = end - start + 1;
+        char[] range = new char[rangeLength];
+
+        for (int i = 0; i < rangeLength; i++)
         {
-            ArgumentNullException.ThrowIfNull(start);
-            ArgumentNullException.ThrowIfNull(end);
-            if (start > end)
-            {
-                throw new ArgumentException("range start should be smaller than range end");
-            }
-            int rangeLength = end - start + 1;
-            char[] range = new char[rangeLength];
-
-            for (int i = 0; i < rangeLength; i++)
-            {
-                range[i] = (char)(start + i);
-            }
-            
-            return range;
+            range[i] = (char)(start + i);
         }
+
+        return range;
     }
 }

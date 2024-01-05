@@ -6,7 +6,7 @@ public class TRTests
     public void FindAndReplace_ShouldReturnReplaced()
     {
         var testStringToOperateOn = "coding challenges";
-        var trUtility = new TRUTility(testStringToOperateOn);
+        TRUTility trUtility = new(testStringToOperateOn);
 
         var replaceResult = trUtility.ReplaceRange("c", "C");
         
@@ -28,7 +28,7 @@ public class TRTests
         string replace,
         string expected)
     {
-        var trUtility = new TRUTility(testStringToOperateOn);
+        TRUTility trUtility = new(testStringToOperateOn);
 
         var replaceResult = trUtility.ReplaceRange(find, replace);
 
@@ -41,7 +41,7 @@ public class TRTests
         string find,
         string replace) {
 
-        var trUtility = new TRUTility(testStringToOperateOn);
+        TRUTility trUtility = new(testStringToOperateOn);
 
         Action act = () => trUtility.ReplaceRange(find, replace);
 
@@ -58,7 +58,7 @@ public class TRTests
                 "The Poject Gutenbeg eBook of The At of This ebook is fo the use of nyone nywhee in the United Sttes nd")]
 
     public void Delete_RemovesSpecifiedCharactersFromString(string input, string find, string expected) {
-        var trUtility = new TRUTility(input);
+        TRUTility trUtility = new(input);
 
         var stringAfterDeleteOperation = trUtility.Delete(find);
 
@@ -71,7 +71,7 @@ public class TRTests
     [InlineData("Duuplicate", "u", "Duplicate")]
     public void Squash_ShouldReplaceConsectiveOccurancesFromString(string input, string find, string expected)
     {
-        var trUtility = new TRUTility(input);
+        TRUTility trUtility = new(input);
 
         var squashResult = trUtility.Squash(find);
 
@@ -81,7 +81,7 @@ public class TRTests
     [Fact]    
     public void Squash_ShouldReplaceConsectiveOccurancesFromStringEvenIfASingleSpaceIsGivenToSquash()
     {
-        var trUtility = new TRUTility("Duplicate Spaces   removed");
+        TRUTility trUtility = new("Duplicate Spaces   removed");
 
         var squashResult = trUtility.Squash(" ");
 

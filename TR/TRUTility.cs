@@ -5,7 +5,7 @@ public class TRUTility(string OperateOn)
     public string Delete(string find)
     {
         var findCharacters = RangeConverter.Convert(find);
-        StringBuilder result = new StringBuilder(OperateOn);
+        StringBuilder result = new(OperateOn);
 
         foreach (var c in findCharacters)
         {

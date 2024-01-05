@@ -1,4 +1,6 @@
-﻿namespace TR.tests;
+﻿using FluentAssertions.Extensions;
+
+namespace TR.tests;
 
 public class TRTests
 {
@@ -34,6 +36,18 @@ public class TRTests
 
         Assert.Equal(expected, replaceResult);
     }
+
+    [Fact]
+    public void Replace_ShouldHandle3000IterationsIn5Seconds()
+    {
+        MemoryUsageTest memoryUsageTest = new();
+
+        memoryUsageTest.ExecutionTimeOf(s => s.TestMemoryUsageFor3000Iterations())
+            .Should()
+            .BeLessThanOrEqualTo(3000.Milliseconds());
+
+    }
+
 
     [Theory]
     [InlineData("CoDiNg ChallEnGes", "A-Z", "")]

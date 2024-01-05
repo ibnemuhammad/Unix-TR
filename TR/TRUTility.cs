@@ -16,7 +16,7 @@ public class TRUTility(string OperateOn)
 
     }
 
-    public string? ReplaceRange(string find, string replace)
+    public string? ReplaceRangeriginalVersion(string find, string replace)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(find);
         ArgumentException.ThrowIfNullOrWhiteSpace(replace);
@@ -24,6 +24,7 @@ public class TRUTility(string OperateOn)
         var findCharacters = RangeConverter.Convert(find);
         var replaceCharacters = RangeConverter.Convert(replace);
         var inputCharacters = OperateOn.ToCharArray();
+
         for (int i = 0; i < inputCharacters.Length; i++)
         {
             char c = inputCharacters[i];
@@ -34,6 +35,22 @@ public class TRUTility(string OperateOn)
             }
         }
         return new string(inputCharacters);
+    }
+    public string? ReplaceRange(string find, string replace)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(find);
+        ArgumentException.ThrowIfNullOrWhiteSpace(replace);
+
+        var findCharacters = RangeConverter.Convert(find);
+        var replaceCharacters = RangeConverter.Convert(replace);
+        StringBuilder stringToProcess = new(OperateOn);
+        for (int i = 0; i < findCharacters.Length; i++)
+        {
+            var f = new string([findCharacters[i]]);
+            var r = new string([replaceCharacters[i]]);
+            stringToProcess = stringToProcess.Replace(f, r);
+        }
+        return stringToProcess.ToString();
     }
 
     public object Squash(string find)

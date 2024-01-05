@@ -5,8 +5,7 @@ public class RangeConverterTests
     [Theory]
     [MemberData(nameof(TestData))]
     public void Converter_ShouldConvertRangeOfCharacters_ToArray(string range, char[] expectedOutputArray) {
-
-       
+        
         char[] actualResultArray = RangeConverter.Convert(range);
 
         actualResultArray.Should().Equal(expectedOutputArray);
